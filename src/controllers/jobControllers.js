@@ -1,6 +1,6 @@
-import Job from "../models/job";
+import Job from "../models/job.js";
 
-exports.getJobs = async (req, res) => {
+export default async function getJobs(req, res) {
   const { size, page } = req.params;
   const pageSize = parseInt(size);
   const pageNumber = parseInt(page);
@@ -26,4 +26,4 @@ exports.getJobs = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Server error" });
   }
-};
+}

@@ -1,8 +1,8 @@
 import express from "express";
-const jobController = require("../controllers/jobController");
+import getJobs from "../controllers/jobControllers.js";
 
 const router = express.Router();
 
-router.get("/:size/:page", jobController.getJobs);
+router.get("/:size/:page", getJobs);
 
 export default router;

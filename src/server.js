@@ -1,16 +1,15 @@
 import express from "express";
-import mongoose from "mongoose";
-import jobRoutes from "./routes/jobRoutes";
+import jobRoutes from "./routes/jobRoutes.js";
+import { connection } from "./mongo.js";
+import dotenv from "dotenv";
 
 const app = express();
 
-mongoose.connect("mongodb://localhost/jobDatabase", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-const db = mongoose.connection;
+dotenv.config();
 
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
+connection();
+
+app.use(express.json());
 
 app.use("/jobs", jobRoutes);
 
