@@ -6,11 +6,11 @@ export default async function getJobs(req, res) {
   const pageNumber = parseInt(page);
 
   try {
-    const totalJobsCount = await Job.countDocuments();
-    const totalPages = Math.ceil(totalJobsCount / pageSize);
+    const totalJobs = await Job.countDocuments();
+    const totalPages = Math.ceil(totalJobs / pageSize);
 
     if (pageNumber < 1 || pageNumber > totalPages) {
-      return res.status(400).json({ error: "Invalid page number" });
+      return res.status(404).json({ error: "Page not found" });
     }
 
     const jobs = await Job.find()
