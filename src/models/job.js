@@ -3,8 +3,12 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const jobSchema = new Schema({
+  _id: {
+    type: Number,
+    required: true,
+  },
   company: {
-    type: Schema.Types.String,
+    type: String,
     required: true,
   },
   logo: {

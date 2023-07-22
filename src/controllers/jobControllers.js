@@ -1,29 +1,15 @@
 import Job from "../models/job.js";
 
-export default async function getJobs(req, res) {
-  const { size, page } = req.params;
-  const pageSize = parseInt(size);
-  const pageNumber = parseInt(page);
-
+export const getJobs = async (req, res) => {
   try {
-    const totalJobs = await Job.countDocuments();
-    const totalPages = Math.ceil(totalJobs / pageSize);
-
-    if (pageNumber < 1 || pageNumber > totalPages) {
-      return res.status(404).json({ error: "Page not found" });
-    }
-
-    const jobs = await Job.find()
-      .skip((pageNumber - 1) * pageSize)
-      .limit(pageSize)
-      .exec();
-
-    res.json({
-      jobs,
-      totalPages,
-      currentPage: pageNumber,
-    });
+    const { page = 1, size = 10 } = req.params;
+    const limit = parseInt(size);
+    const skip = (parseInt(page) - 1) * limit;
+    const data = await Job.find().skip(skip).limit(limit);
+    res.status(200).json(data);
   } catch (error) {
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({
+      error: "An error occurred while retrieving the job postings.",
+    });
   }
-}
+};
