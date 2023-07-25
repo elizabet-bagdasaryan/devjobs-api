@@ -44,7 +44,7 @@ The backend application has the following dependencies:
 - Node.js: A JavaScript runtime that allows executing server-side JavaScript.
 - Express: A web framework for Node.js that handles HTTP requests and responses.
 - MongoDB: A NoSQL database used to store job information.
-- 
+
 Make sure to install these dependencies before running the application.
 
 
