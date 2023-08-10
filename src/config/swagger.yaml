@@ -1,0 +1,36 @@
+openapi: 3.0.0
+info:
+  title: DevJobs API 
+  description: API for managing dev jobs
+  version: 1.0.0
+servers:
+  - url: https://space-tourism-backend-production.up.railway.app/
+    description: server
+  - url: http://localhost:3000
+    description: local server
+
+
+paths:
+  /getdevjobs/:size/:page:
+    get:
+      description: Retrieves data depending on the specific amount information when the request is sent.For example, if such a request came from the front "/jobs/6/2" shows 6 jobs in the frontend per page, and 2 means it's on the second page.
+      parameters:
+        - name: size
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successfully fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
