@@ -1,6 +1,6 @@
 import express from "express";
 import { router } from "./routes/jobRoutes.js";
-import { connection } from "./mongo.js";
+import { connection } from "./config/mongo.js";
 import dotenv from "dotenv";
 
 
