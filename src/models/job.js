@@ -1,14 +1,12 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 
-const { Schema } = mongoose;
-
-const jobSchema = new Schema({
-  _id: {
-    type: Number,
+const ProjectSchema = new Schema({
+  id: {
+    type: Schema.Types.Number,
     required: true,
   },
   company: {
-    type: String,
+    type: Schema.Types.String,
     required: true,
   },
   logo: {
@@ -52,22 +50,27 @@ const jobSchema = new Schema({
       type: Schema.Types.String,
       required: true,
     },
-    items: {
-      type: Schema.Types.Array,
-      required: true,
-    },
+    items: [
+      {
+        type: Schema.Types.String,
+        required: true,
+      },
+    ],
   },
   role: {
     content: {
       type: Schema.Types.String,
       required: true,
     },
-    items: {
-      type: Schema.Types.Array,
-      required: true,
-    },
+    items: [
+      {
+        type: Schema.Types.String,
+        required: true,
+      },
+    ],
   },
 });
 
-const Job = mongoose.model("Job", jobSchema);
+const Job = model("job", ProjectSchema);
+
 export default Job;
